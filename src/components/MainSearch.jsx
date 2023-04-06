@@ -32,10 +32,11 @@ const MainSearch = () => {
   return (
     <Container>
       <Row>
-        <Link to="/favourites" className="btn btn-success">
-          {" "}
-          SHOW FAVOURITES
-        </Link>
+        <Col>
+          <Link to="/favourites" className="m-2 btn btn-success w-100">
+            FAVOURITES
+          </Link>
+        </Col>
       </Row>
       <Row>
         <Col xs={10} className="mx-auto my-3">
