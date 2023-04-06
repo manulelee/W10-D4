@@ -10,7 +10,7 @@ const initialState = {
   // questo stato iniziale è buona prassi suddividerlo in "slices", in sezioni
   // in "fette", in sotto-oggetti
   favourites: {
-    content: [], // questo è il contenuto del carrello
+    content: [], // questo è il contenuto
   },
 };
 

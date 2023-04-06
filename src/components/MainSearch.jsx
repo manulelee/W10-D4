@@ -1,47 +1,49 @@
-import { useState } from 'react'
-import { Container, Row, Col, Form } from 'react-bootstrap'
-import Job from './Job'
+import { useState } from "react";
+import { Container, Row, Col, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Job from "./Job";
 
 const MainSearch = () => {
-  const [query, setQuery] = useState('')
-  const [jobs, setJobs] = useState([])
+  const [query, setQuery] = useState("");
+  const [jobs, setJobs] = useState([]);
 
-  const baseEndpoint = 'https://strive-benchmark.herokuapp.com/api/jobs?search='
+  const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
   const handleChange = (e) => {
-    setQuery(e.target.value)
-  }
+    setQuery(e.target.value);
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      const response = await fetch(baseEndpoint + query + '&limit=20')
+      const response = await fetch(baseEndpoint + query + "&limit=20");
       if (response.ok) {
-        const { data } = await response.json()
-        setJobs(data)
+        const { data } = await response.json();
+        setJobs(data);
       } else {
-        alert('Error fetching results')
+        alert("Error fetching results");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Container>
+      <Row>
+        <Link to="/favourites" className="btn btn-success">
+          {" "}
+          SHOW FAVOURITES
+        </Link>
+      </Row>
       <Row>
         <Col xs={10} className="mx-auto my-3">
           <h1>Remote Jobs Search</h1>
         </Col>
         <Col xs={10} className="mx-auto">
           <Form onSubmit={handleSubmit}>
-            <Form.Control
-              type="search"
-              value={query}
-              onChange={handleChange}
-              placeholder="type and press Enter"
-            />
+            <Form.Control type="search" value={query} onChange={handleChange} placeholder="type and press Enter" />
           </Form>
         </Col>
         <Col xs={10} className="mx-auto mb-5">
@@ -51,7 +53,7 @@ const MainSearch = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default MainSearch
+export default MainSearch;
